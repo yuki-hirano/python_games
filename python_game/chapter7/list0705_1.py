@@ -1,5 +1,28 @@
 import tkinter
 
+KEKKA = [
+    "前世がネコだった可能性は極めて薄いです",
+    "いたって普通の人間です",
+    "特別おかしなところはありません",
+    "やや、ネコっぽい所があります",
+    "ネコに近い性格のようです",
+    "ネコにかなり近い性格です",
+    "前世はネコだったかもしれません",
+    "見た目は人間、中身はネコの可能性があります"
+    ]
+def click_btn():
+    pts = 0
+    for i in range(7):
+        if bvar[i].get() == True:
+            pts = pts + 1
+    nekodo = int(100*pts/7)
+    text.delete("1.0", tkinter.END)
+    text.insert("1.0", "<診断結果>\nあなたのネコ度は"
+                + str(nekodo)
+                + "%です\n"
+                + KEKKA[pts]
+                )
+    
 root = tkinter.Tk()
 root.title("ネコ度診断アプリ")
 root.resizable(False, False)
@@ -7,7 +30,9 @@ canvas = tkinter.Canvas(root, width=800,height=600)
 canvas.pack()
 gazou = tkinter.PhotoImage(file="sumire.png")
 canvas.create_image(400, 300, image=gazou)
-button = tkinter.Button(text="診断ずる", font=("Time New Roman", 32), bg="lightgreen")
+button = tkinter.Button(text="診断ずる"
+                        , font=("Time New Roman", 32)
+                        , bg="lightgreen", command=click_btn)
 button.place(x=400, y=480)
 text = tkinter.Text(width=40,height=5, font=("Time New Roman", 16))
 text.place(x=320,y=30)
